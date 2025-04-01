@@ -1,0 +1,39 @@
+Ethiopia's Tech Community - Full Stack Development Project
+Project Overview
+Ethiopia's Tech Community is a dynamic website designed to serve as a hub for technology enthusiasts, developers, and professionals in Ethiopia. The platform allows users to stay updated with the latest tech news, share blog posts, and engage with the community. The website features a responsive front-end and a secure back-end, ensuring a seamless user experience.
+Key Features
+1.	User Authentication
+○	Secure login/signup system (email & password).
+○	Protected routes for authenticated users.
+○	Session management for logged-in users.
+2.	Multi-Page Structure
+○	Home Page – Introduces the platform, its mission, vision, and objectives.
+○	Blog Page – Displays the latest tech news and community blog posts.
+○	My Blog Page (Private) – Only accessible after login; users can view, edit, or delete their own posts.
+○	Profile Page – Shows user details, activity, and account settings.
+3.	Blog Management
+○	Users can create, read, update, and delete (CRUD) their own blog posts.
+○	Real-time updates on the blog feed.
+4.	Responsive & Modern UI
+○	Clean, intuitive design optimized for both desktop and mobile.
+○	Interactive elements (like buttons, forms, and navigation).
+
+
+Technical Stack
+Front-End
+●	React.js – For dynamic UI components.
+●	CSS – For styling and responsive layouts.
+●	Fetch API – For API calls to the back-end.
+Back-End
+●	Node.js & Express.js – For server-side logic.
+●	MongoDB – Database for storing user data and blog posts.
+●	JWT (JSON Web Tokens) – For secure authentication.
+●	RESTful API – For handling HTTP requests (GET, POST, PUT, DELETE).
+Additional Tools
+●	Git & GitHub – For version control and collaboration.
+●	Postman – For API testing.
+●	Deployment () – For hosting the live website.
+Conclusion
+This project will demonstrate full-stack development skills, including front-end design, back-end API development, database management, and user authentication. It provides a practical platform for Ethiopian tech enthusiasts to share knowledge and stay updated with industry trends.
+
+
