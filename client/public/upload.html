@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Ethiopia Tech Community Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    button {
+      background-color: #4338ca;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin-top: 20px;
+    }
+    .result {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      display: none;
+    }
+    h3 {
+      margin-top: 30px;
+    }
+    ol {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <h1>Ethiopia Tech Community Project</h1>
+  <p>Click the button below to get a downloadable link to your project:</p>
+  
+  <button id="uploadButton">Generate Download Link</button>
+  
+  <div id="result" class="result">
+    <p>Your project is available for download at:</p>
+    <p><a id="downloadLink" href="#" target="_blank"></a></p>
+    <p>This link will be available for 24 hours.</p>
+  </div>
+  
+  <h3>Alternative Download Methods:</h3>
+  <ol>
+    <li><strong>Use Replit's built-in feature:</strong> Click on the three dots (⋮) in the Files panel header and select "Download as zip"</li>
+    <li><strong>Use Git:</strong> Connect to GitHub using the Version Control panel and download from there</li>
+    <li><strong>Go to URL:</strong> Visit your app's URL with "/download" at the end (e.g., yourapp.repl.co/download)</li>
+  </ol>
+
+  <script>
+    document.getElementById('uploadButton').addEventListener('click', async function() {
+      this.textContent = 'Preparing download...';
+      this.disabled = true;
+      
+      try {
+        // Simulate upload to file.io
+        const response = await fetch('/download');
+        const blob = await response.blob();
+        
+        // Create a temporary file object
+        const file = new File([blob], 'ethiopia-tech-community.zip', {
+          type: 'application/zip'
+        });
+        
+        // Upload to file.io
+        const formData = new FormData();
+        formData.append('file', file);
+        
+        const uploadResponse = await fetch('https://file.io', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await uploadResponse.json();
+        
+        if (data.success) {
+          document.getElementById('downloadLink').href = data.link;
+          document.getElementById('downloadLink').textContent = data.link;
+          document.getElementById('result').style.display = 'block';
+          this.textContent = 'Link Generated Successfully!';
+        } else {
+          throw new Error('Upload failed');
+        }
+      } catch (error) {
+        alert('Failed to generate download link. Please try another method listed below.');
+        this.textContent = 'Try Again';
+        this.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>

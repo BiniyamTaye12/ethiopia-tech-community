@@ -18,6 +18,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/download", (req, res) => {
     res.download("ethiopia-tech-community.zip");
   });
+  
+  // Upload page route
+  app.get("/upload", (req, res) => {
+    res.sendFile("client/public/upload.html", { root: "." });
+  });
 
   // Get all blog posts
   app.get("/api/posts", async (req, res) => {
