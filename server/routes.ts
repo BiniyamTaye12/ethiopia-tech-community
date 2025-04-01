@@ -14,6 +14,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
   setupAuth(app);
 
   // Blog Posts API Routes
+  // Download route for the zip file
+  app.get("/download", (req, res) => {
+    res.download("ethiopia-tech-community.zip");
+  });
+
   // Get all blog posts
   app.get("/api/posts", async (req, res) => {
     try {
