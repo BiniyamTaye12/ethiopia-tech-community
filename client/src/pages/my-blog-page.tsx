@@ -37,7 +37,7 @@ import { useToast } from "@/hooks/use-toast";
 export default function MyBlogPage() {
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
   const [sortBy, setSortBy] = useState("latest");
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
@@ -123,7 +123,7 @@ export default function MyBlogPage() {
   const filteredPosts = posts ? 
     posts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesStatus = statusFilter ? post.status === statusFilter : true;
+      const matchesStatus = statusFilter === "all" ? true : post.status === statusFilter;
       return matchesSearch && matchesStatus;
     }) : [];
 
@@ -249,7 +249,7 @@ export default function MyBlogPage() {
                   <SelectValue placeholder="Status: All" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">Status: All</SelectItem>
+                  <SelectItem value="all">Status: All</SelectItem>
                   <SelectItem value="published">Published</SelectItem>
                   <SelectItem value="draft">Draft</SelectItem>
                 </SelectContent>

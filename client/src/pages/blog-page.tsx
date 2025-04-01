@@ -15,7 +15,7 @@ import { Loader2, Search } from "lucide-react";
 
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [sortBy, setSortBy] = useState("latest");
 
   // Fetch all blog posts
@@ -28,7 +28,7 @@ export default function BlogPage() {
     posts.filter(post => {
       const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          post.content.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+      const matchesCategory = selectedCategory === "all" ? true : post.category === selectedCategory;
       return matchesSearch && matchesCategory;
     }) : [];
 
@@ -83,7 +83,7 @@ export default function BlogPage() {
                   <SelectValue placeholder="All Categories" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Categories</SelectItem>
+                  <SelectItem value="all">All Categories</SelectItem>
                   {categories.map(category => (
                     <SelectItem key={category} value={category}>
                       {category}
